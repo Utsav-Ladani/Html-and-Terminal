@@ -1,0 +1,17 @@
+.main {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.frm {
+    display: flex;
+    justify-content: center;
+    column-gap: 10px;
+    margin: 10px 0;
+}
+.op {
+    min-height: 200px;
+    border: solid 1px black;
+    overflow: auto;
+}
