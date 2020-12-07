@@ -4,6 +4,7 @@ const root = document.getElementById('root');
 class App extends React.Component {
 
     state = {
+        location: "",
         command: "",
         output: "",
     }
@@ -15,10 +16,10 @@ class App extends React.Component {
             headers: { 'Content-Type': 'application/json' },
         };
 
-        axios.get(`http://localhost:5000/run/?command=${this.state.command}`, setting)
+        axios.get(`http://localhost:5000/run/?command=${this.state.command}&&location=${this.state.location}`, setting)
             .then(res => {
                 console.log(res.data);
-                this.setState({ output: res.data.op });
+                this.setState({ output: res.data.op.text });
             })
             .catch(err => console.log(err));
     }
@@ -27,6 +28,13 @@ class App extends React.Component {
         return (
             <div className="main" >
                 <div className="container-md frm" >
+                    <input
+                        type="text"
+                        id="location"
+                        name="location"
+                        placeholder="Type Location"
+                        onChange={(e) => { this.setState({ location: e.target.value }) }}                       
+                    ></input>
                     <input
                         type="text"
                         id="command"
@@ -40,7 +48,7 @@ class App extends React.Component {
                     <button className="btn btn-success" onClick={() => this.handleSubmit()} >Run</button>
                     <button className="btn btn-primary"
                         onClick={() => this.setState({ output: "" })}>
-                       Clear
+                        Clear
                     </button>
                 </div>
                 <div className="container-md op" ><pre> {this.state.output} </pre> </div>
