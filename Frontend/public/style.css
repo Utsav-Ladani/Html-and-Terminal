@@ -1,0 +1,186 @@
+.light {
+    /* nav */
+    --logo-color: dodgerblue;
+    --back-color: white;
+    --box-shadow: rgba(0, 0, 0, 0.274);
+    --hover-effect: rgb(0, 81, 255);
+    --link-color: rgb(85, 170, 255);
+    --active-link-color: rgb(0, 81, 255);
+    --active-link-bColor: rgba(218, 236, 255, 0.582);
+    --terminal-bColor: white;
+    --terminal-shadow: rgba(172, 172, 172, 0.185);
+    --anime-bColor:  rgba(151, 200, 247, 0.267);
+    --welcome-bColor: rgba(181, 209, 245, 0.164);
+}
+
+.dark {
+    /* nav */
+    --logo-color: dodgerblue;
+    --back-color: black;
+    --box-shadow: rgba(0, 0, 0, 0.274);
+    --hover-effect: rgb(0, 81, 255);
+    --link-color: rgb(85, 170, 255);
+    --active-link-color: rgb(0, 81, 255);
+    --active-link-bColor: rgba(218, 236, 255, 0.863);
+    --terminal-bColor: black;
+    --terminal-shadow: rgba(167, 167, 167, 0.705);
+    --anime-bColor:  rgba(90, 90, 90, 0.247);
+    --welcome-bColor: rgb(90, 90, 90);
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.darkmode {
+    position: absolute;
+    margin-top: calc(100vh - 70px);
+    margin-left: calc(100vw - 70px);
+    height: 60px;
+    width: 60px;
+    color: white;
+    background-color: black;
+    border: none;
+    border-radius: 50%;
+    line-height: 60px;
+    text-align: center;
+}
+
+.dark-switch {
+    background-color: dodgerblue;
+}
+
+.main {
+    height: 100vh;
+    display: grid;
+    grid-template-rows: auto 1fr;
+}
+
+.nav {
+    padding: 5px;
+    color: var(--logo-color);
+    display: grid;
+    grid-template-columns: 1fr 50px;
+    background-color: var(--back-color);
+    box-shadow: 0 0 10px 0px var(--box-shadow) ;
+}
+
+.github-link {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.github-mark {
+    clip-path: circle(15px at center);
+    background-color: white;
+}
+
+.subdiv {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    padding: 0px 3vmin;
+    font-size: 26px;
+}
+
+.link {
+    height: 100%;
+    padding: 5px 10px;
+    color: var(--link-color);
+    font-weight: 500;
+}
+
+.navlink>span:hover {
+    cursor: pointer;
+    color: var(--hover-effect);
+}
+
+.active {
+    color: var(--active-link-color);
+    background-color:var(--active-link-bColor);
+    border-radius: 3px;
+}
+
+.page {
+    color: white;
+    display: grid;
+    grid-template-columns: 6fr 4fr;
+}
+
+.cmd-anime {
+    background-color: var(--anime-bColor);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.draw {
+    height: 30vw;
+    width: 50vw;
+    padding: 10px;
+    color: var(--logo-color);
+    background-color: white;
+    box-shadow: 0px 0px 10px 10px var(--terminal-shadow);
+    border-radius: 5px;
+    background-color: var(--terminal-bColor);
+}
+
+.welcome {
+    color: var(--logo-color);
+    background-color: var(--welcome-bColor);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn>i {
+    color: white;
+}
+
+@media screen and (max-width: 850px) {
+    .page {
+        grid-template: 50vh 1fr / 1fr;
+    }
+    .draw {
+        height: 40vh;
+        width: 60vw;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .page {
+        grid-template: 50vh 1fr / 1fr;
+    }
+    .draw {
+        height: 45vw;
+        width: 70vw;
+    }
+}
+
+/* .op {
+    min-height: 200px;
+    border: solid 1px black;
+    overflow: auto;
+}
+.panel {
+    padding: 0;
+}
+nav > li {
+    padding: 2px 5px    ;
+    margin-right: 2px;
+    border: solid 1px black;
+    border-bottom: none;
+    border-top-left-radius: 7px;
+    border-top-right-radius: 7px;
+}
+.active-tab {
+    color: white;
+    background-color: dodgerblue;
+} */
