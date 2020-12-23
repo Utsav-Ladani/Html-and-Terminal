@@ -17,6 +17,7 @@ class App extends React.Component {
           e.target.classList.toggle("dark-switch");
           this.mainref.current.classList.toggle("dark");
           this.mainref.current.classList.toggle("light");
+          e.target.innerText = e.target.innerText === "Dark" ? "Light" : "Dark";
         }} >Dark</button>
 
         <div className="main light" ref={this.mainref}>

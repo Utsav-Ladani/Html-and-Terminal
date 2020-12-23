@@ -2,7 +2,7 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const cors = require('cors')
 
-const { runcmd } = require('./util/new')
+const { runcmd } = require('./util/runcmd')
 
 const app = express()
 const port = 5000

@@ -4,8 +4,12 @@ class About extends React.Component {
 
     render() {
         return (
-            <div>
-                About
+            <div className="about" >
+                <h4>Github Project: Html-and-Terminal</h4>
+                <footer>
+                    Made with ❤️
+                    <p> &copy;copyright Utsav-Ladani 2020 </p>
+                </footer>
             </div>
         );
     }

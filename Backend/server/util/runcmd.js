@@ -30,16 +30,4 @@ function runcmd(req, res) {
     });
 }
 
-function openFile(req, res) {
-
-    // let fileRegex = RegExp(/^open /i);
-    let filename = req.
-
-    fs.ReadStream()
-
-    output.text = "Application";
-    res.json({ op: output });
-    res.end();
-}
-
 exports.runcmd = runcmd;

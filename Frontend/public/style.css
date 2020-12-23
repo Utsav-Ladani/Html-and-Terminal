@@ -1,31 +1,49 @@
 .light {
+    /* main */
+    --back-color: white;
+    
     /* nav */
     --logo-color: dodgerblue;
-    --back-color: white;
-    --box-shadow: rgba(0, 0, 0, 0.274);
+    --navback-color: white;
+    --shadow: rgba(0, 0, 0, 0.274);
     --hover-effect: rgb(0, 81, 255);
     --link-color: rgb(85, 170, 255);
     --active-link-color: rgb(0, 81, 255);
     --active-link-bColor: rgba(218, 236, 255, 0.582);
     --terminal-bColor: white;
-    --terminal-shadow: rgba(172, 172, 172, 0.185);
+    --terminal-shadow: rgba(172, 172, 172, 0.37);
     --anime-bColor:  rgba(151, 200, 247, 0.267);
     --welcome-bColor: rgba(181, 209, 245, 0.164);
+
+    /* cmd */
+    --op-color: black;
+
+    /* mode-btn */
+    --mode-color: black;
 }
 
 .dark {
+    /* main */
+    --back-color: rgb(68, 67, 67);
+
     /* nav */
     --logo-color: dodgerblue;
-    --back-color: black;
-    --box-shadow: rgba(0, 0, 0, 0.274);
+    --navback-color: black;
+    --shadow: rgba(161, 161, 161, 0.521);
     --hover-effect: rgb(0, 81, 255);
     --link-color: rgb(85, 170, 255);
     --active-link-color: rgb(0, 81, 255);
     --active-link-bColor: rgba(218, 236, 255, 0.863);
     --terminal-bColor: black;
-    --terminal-shadow: rgba(167, 167, 167, 0.705);
-    --anime-bColor:  rgba(90, 90, 90, 0.247);
-    --welcome-bColor: rgb(90, 90, 90);
+    --terminal-shadow: rgba(121, 121, 121, 0.705);
+    --anime-bColor:  rgb(90, 90, 90);
+    --welcome-bColor: rgb(59, 59, 59);
+
+    /* cmd */
+    --op-color: rgb(197, 197, 197);
+    
+    /* mode-btn */
+    --mode-color: dodgerblue;
 }
 
 * {
@@ -47,16 +65,23 @@
     border-radius: 50%;
     line-height: 60px;
     text-align: center;
+    box-shadow: 0 0 10px 2px black ;
+}
+
+.darkmode:focus {
+    outline: none;
 }
 
 .dark-switch {
     background-color: dodgerblue;
+    box-shadow: 0 0 10px 2px dodgerblue ;
 }
 
 .main {
     height: 100vh;
     display: grid;
     grid-template-rows: auto 1fr;
+    background-color: var(--back-color);
 }
 
 .nav {
@@ -64,8 +89,9 @@
     color: var(--logo-color);
     display: grid;
     grid-template-columns: 1fr 50px;
-    background-color: var(--back-color);
-    box-shadow: 0 0 10px 0px var(--box-shadow) ;
+    background-color: var(--navback-color);
+    box-shadow: 0 0 10px 2px var(--shadow) ;
+    z-index: 1;
 }
 
 .github-link {
@@ -78,6 +104,8 @@
     clip-path: circle(15px at center);
     background-color: white;
 }
+
+/* Home page design */
 
 .subdiv {
     display: flex;
@@ -127,7 +155,7 @@
     padding: 10px;
     color: var(--logo-color);
     background-color: white;
-    box-shadow: 0px 0px 10px 10px var(--terminal-shadow);
+    box-shadow: 0px 0px 10px 4px var(--terminal-shadow);
     border-radius: 5px;
     background-color: var(--terminal-bColor);
 }
@@ -144,7 +172,53 @@
     color: white;
 }
 
-@media screen and (max-width: 850px) {
+/* Docs */
+
+.docs {
+    margin: auto;
+    text-align: center;
+    color: var(--logo-color);
+}
+
+/* Cmd */
+
+.cmd {
+    margin: auto;
+}
+
+.inp {
+    margin: 10px;
+    display: flex;
+    column-gap: 10px;
+    justify-content: center;
+    align-items: center;
+}
+.inp > input {
+    padding: 5px;
+    color: var(--logo-color);
+    background-color: var(--navback-color);
+    border: solid 1px black;
+    font-weight: 600;
+}
+.op {
+    min-height: 200px;
+    max-height: calc(100vh - 100px);
+    border: solid 1px black;
+    overflow: auto;
+}
+
+.op > pre {
+    color: var(--op-color);
+}
+
+/* About */
+
+.about {
+    margin: auto;
+    color: var(--logo-color);
+}
+
+/* @media screen and (max-width: 850px) {
     .page {
         grid-template: 50vh 1fr / 1fr;
     }
@@ -162,25 +236,4 @@
         height: 45vw;
         width: 70vw;
     }
-}
-
-/* .op {
-    min-height: 200px;
-    border: solid 1px black;
-    overflow: auto;
-}
-.panel {
-    padding: 0;
-}
-nav > li {
-    padding: 2px 5px    ;
-    margin-right: 2px;
-    border: solid 1px black;
-    border-bottom: none;
-    border-top-left-radius: 7px;
-    border-top-right-radius: 7px;
-}
-.active-tab {
-    color: white;
-    background-color: dodgerblue;
 } */

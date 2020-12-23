@@ -4,9 +4,9 @@ class Docs extends React.Component {
 
     render() {
         return (
-            <div>
-                Docs
-            </div>
+            <h3 className="docs" >
+                Opps!, Docs are not available.
+            </h3>
         );
     }
 }
