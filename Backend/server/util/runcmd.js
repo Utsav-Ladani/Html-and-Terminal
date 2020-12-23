@@ -13,7 +13,7 @@ function runcmd(req, res) {
     console.log(location, command);
 
     const options = {
-        cwd: 'E:/' + location,
+        cwd: location,
         shell: 'cmd',
     }
 
