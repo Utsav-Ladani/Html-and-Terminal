@@ -1,2 +1,5 @@
 # Html-and-Terminal
-Type command in browser and run on server
+Html and terminal is a basic project, where you can type commnd in browser and run it on your server.
+You can use it as a your server manager.
+
+Note: This project build successfully on windows 7, but not checked on real server.
