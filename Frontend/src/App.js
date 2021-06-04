@@ -1,32 +1,35 @@
-import React, { createRef } from 'react'
+import React, { useState } from 'react'
+import { Route, Switch } from 'react-router-dom'
 
-import Navbar from './Components/navbar.jsx'
-import Page from './Components/page.jsx'
+import Navbar from './Components/navbar'
+import Home from './pages/Home';
+import Cmd from './pages/Cmd';
+import About from './pages/About';
 
-class App extends React.Component {
-  state = {
-    index: "Home",
-  };
 
-  mainref = createRef();
+function App() {
+	const [light, setTheme] = useState(true);
 
-  render() {
-    return (
-      <React.Fragment>
-        <button className="darkmode" onClick={(e) => {
-          e.target.classList.toggle("dark-switch");
-          this.mainref.current.classList.toggle("dark");
-          this.mainref.current.classList.toggle("light");
-          e.target.innerText = e.target.innerText === "Dark" ? "Light" : "Dark";
-        }} >Dark</button>
+	return (
+		<React.Fragment>
+			<button className="darkmode dark-switch" onClick={(e) => {
+				setTheme(!light);
+				e.target.classList.toggle("dark-switch");
+				e.target.textContent = light ? "Light" : "Dark";
+			}}>
+				Dark
+        		</button>
 
-        <div className="main light" ref={this.mainref}>
-          <Navbar index={this.state.index} changePage={(index) => { this.setState({ index: index }) }} />
-          <Page name={this.state.index} />
-        </div>
-      </React.Fragment>
-    );
-  }
+			<div className={`main ${light ? "light" : "dark"}`}>
+				<Navbar />
+				<Switch>
+					<Route exact path='/' component={Home} />
+					<Route exact path='/cmd' component={Cmd} />
+					<Route exact path='/about' component={About} />
+				</Switch>
+			</div>
+		</React.Fragment>
+	);
 }
 
 export default App;

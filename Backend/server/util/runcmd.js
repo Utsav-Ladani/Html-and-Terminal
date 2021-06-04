@@ -1,33 +1,17 @@
-const { exec } = require('child_process')
-const fs = require('fs')
+const { spawn } = require('child_process')
 
-function runcmd(req, res) {
-    let location = req.query.location + "";
-    let command = req.query.command + "";
+function Runcmd(callback) {
+    this.p = spawn('cmd.exe');
+    
+    this.p.stdout.on('data', (d) => {
+        callback("output", d.toString());
+    })
+    
+    this.p.stderr.on('err', (err) => {
+        callback("output", err.toString());
+    })
 
-    let output = {
-        text: "",
-        success: false,
-    };
-
-    console.log(location, command);
-
-    const options = {
-        cwd: location,
-        shell: 'cmd',
-    }
-
-    exec(command, options, (err, stdout, stderr) => {
-        if (err) {
-            output.text = "Application error";
-        }
-        else {
-            output.text = (stderr || stdout);
-            output.success = true;
-            res.json({ op: output });
-            res.end();
-        }
-    });
+    this.write = this.p.stdin.write;
 }
 
-exports.runcmd = runcmd;
+exports.Runcmd = Runcmd;

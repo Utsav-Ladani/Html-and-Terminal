@@ -29,18 +29,18 @@
     /* nav */
     --logo-color: dodgerblue;
     --navback-color: black;
-    --shadow: rgba(161, 161, 161, 0.521);
+    --shadow: rgba(49, 49, 49, 0.966);
     --hover-effect: rgb(0, 81, 255);
     --link-color: rgb(85, 170, 255);
     --active-link-color: rgb(0, 81, 255);
     --active-link-bColor: rgba(218, 236, 255, 0.863);
     --terminal-bColor: black;
-    --terminal-shadow: rgba(121, 121, 121, 0.705);
+    --terminal-shadow: rgba(44, 44, 44, 0.788);
     --anime-bColor:  rgb(90, 90, 90);
-    --welcome-bColor: rgb(59, 59, 59);
+    --welcome-bColor: rgb(51, 51, 51);
 
     /* cmd */
-    --op-color: rgb(197, 197, 197);
+    --op-color: var(--logo-color);
     
     /* mode-btn */
     --mode-color: dodgerblue;
@@ -55,8 +55,8 @@
 
 .darkmode {
     position: absolute;
-    margin-top: calc(100vh - 70px);
-    margin-left: calc(100vw - 70px);
+    bottom: 20px;
+    right: 20px;
     height: 60px;
     width: 60px;
     color: white;
@@ -65,7 +65,8 @@
     border-radius: 50%;
     line-height: 60px;
     text-align: center;
-    box-shadow: 0 0 10px 2px black ;
+    box-shadow: 0 0 5px 2px rgba(41, 41, 41, 0.678) ;
+    z-index: 2;
 }
 
 .darkmode:focus {
@@ -74,7 +75,7 @@
 
 .dark-switch {
     background-color: dodgerblue;
-    box-shadow: 0 0 10px 2px dodgerblue ;
+    box-shadow: 0 0 10px 2px rgba(30, 143, 255, 0.432) ;
 }
 
 .main {
@@ -90,7 +91,7 @@
     display: grid;
     grid-template-columns: 1fr 50px;
     background-color: var(--navback-color);
-    box-shadow: 0 0 10px 2px var(--shadow) ;
+    box-shadow: 0 0 10px 0px var(--shadow) ;
     z-index: 1;
 }
 
@@ -123,11 +124,13 @@
     padding: 5px 10px;
     color: var(--link-color);
     font-weight: 500;
+    text-decoration: none;
 }
 
-.navlink>span:hover {
+.navlink>.link:hover {
     cursor: pointer;
     color: var(--hover-effect);
+    text-decoration: none;
 }
 
 .active {
@@ -172,18 +175,10 @@
     color: white;
 }
 
-/* Docs */
-
-.docs {
-    margin: auto;
-    text-align: center;
-    color: var(--logo-color);
-}
-
 /* Cmd */
 
 .cmd {
-    margin: auto;
+    padding: 10px 20px;
 }
 
 .inp {
@@ -195,19 +190,31 @@
 }
 .inp > input {
     padding: 5px;
+    width: 70vw;
+    min-width: 200px;
     color: var(--logo-color);
     background-color: var(--navback-color);
-    border: solid 1px black;
-    font-weight: 600;
-}
-.op {
-    min-height: 200px;
-    max-height: calc(100vh - 100px);
-    border: solid 1px black;
-    overflow: auto;
+    border: solid 2px dodgerblue;
+    border-radius: 4px;
+    font-weight: 800;
 }
 
-.op > pre {
+.inp > input:focus {
+    outline: solid 2px rgba(30, 143, 255, 0.596);
+}
+
+.output {
+    height: 80vh;
+    border: none;
+    box-shadow: 0 0 10px 0 rgba(26, 25, 25, 0.301);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.terminal-tab {
+    margin-top: 80vh;
+    transform: translate(0, -100%);
+    padding: 20px;
     color: var(--op-color);
 }
 
@@ -215,10 +222,11 @@
 
 .about {
     margin: auto;
+    text-align: center;
     color: var(--logo-color);
 }
 
-/* @media screen and (max-width: 850px) {
+@media screen and (max-width: 850px) {
     .page {
         grid-template: 50vh 1fr / 1fr;
     }
@@ -236,4 +244,4 @@
         height: 45vw;
         width: 70vw;
     }
-} */
+}

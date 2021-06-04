@@ -1,23 +1,16 @@
 import React from 'react'
+import {NavLink} from 'react-router-dom'
 
 class Navbar extends React.Component {
-
-    changePage = (index) => {
-        this.props.changePage(index);
-    }
-
     render() {
         return (
             <div className="nav" >
                 <div className="subdiv">
                     <span className="logo" title="> Run" > &gt;&nbsp;Run</span>
                     <span className="navlink">
-                        {
-                            ["Home", "Docs", "Cmd", "About"]
-                                .map((val, index) => {
-                                    return <span className={val === this.props.index ? "link active" : "link"} key={index} onClick={() => this.changePage(val)} >{val}</span>;
-                                })
-                        }
+                        <NavLink exact className="link" activeClassName="active" to="/">Home</NavLink>
+                        <NavLink className="link" activeClassName="active" to="/cmd">Terminal</NavLink>
+                        <NavLink className="link" activeClassName="active" to="/about">About</NavLink>
                     </span>
                 </div>
                 <a className="github-link" href="https://github.com/Utsav-Ladani/Html-and-Terminal" target="_blank" rel="noopener noreferrer">
