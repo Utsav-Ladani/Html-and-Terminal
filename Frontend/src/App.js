@@ -12,12 +12,12 @@ function App() {
 
 	return (
 		<React.Fragment>
-			<button className="darkmode dark-switch" onClick={(e) => {
+			<button className="darkmode" onClick={(e) => {
 				setTheme(!light);
 				e.target.classList.toggle("dark-switch");
-				e.target.textContent = light ? "Light" : "Dark";
+				// e.target.textContent = light ? "Light" : "Dark";
 			}}>
-				Dark
+				{light?"Light":"Dark"}
         		</button>
 
 			<div className={`main ${light ? "light" : "dark"}`}>

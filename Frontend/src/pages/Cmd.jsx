@@ -18,11 +18,21 @@ class Cmd extends React.Component {
         this.socket = socketio.connect(SOCKET_URL, { transports: ['websocket'] });
 
         this.socket.emit("join");
-        this.socket.on("output", (data) => {
-            this.setState({output: this.state.output + data});
-        })
+
         this.socket.on('joinClient', () => {
             this.setState({output: ""});
+        })
+
+        this.socket.on("output", (data) => {
+            this.setState((state) => ({output: state.output + data}));
+
+            let view = document.getElementById("output");
+            view.scrollBy(0, view.scrollHeight);
+        })
+
+        this.socket.on('closeTerminal', () => {
+            delete this.socket;
+            window.location.href = '/';
         })
     }
 
@@ -42,8 +52,8 @@ class Cmd extends React.Component {
     render() {
         return (
             <div className="cmd" >
-                <div className="output">
-                    <pre className="terminal-tab" id="output">
+                <div className="output" id="output">
+                    <pre className="terminal-tab">
                         {this.state.output}
                     </pre>
                 </div>

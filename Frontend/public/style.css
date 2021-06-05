@@ -1,6 +1,6 @@
 .light {
     /* main */
-    --back-color: white;
+    --back-color: rgb(246, 247, 255);
     
     /* nav */
     --logo-color: dodgerblue;
@@ -9,7 +9,7 @@
     --hover-effect: rgb(0, 81, 255);
     --link-color: rgb(85, 170, 255);
     --active-link-color: rgb(0, 81, 255);
-    --active-link-bColor: rgba(218, 236, 255, 0.582);
+    --active-link-bColor: rgba(221, 238, 255, 0.897);
     --terminal-bColor: white;
     --terminal-shadow: rgba(172, 172, 172, 0.37);
     --anime-bColor:  rgba(151, 200, 247, 0.267);
@@ -17,6 +17,7 @@
 
     /* cmd */
     --op-color: black;
+    --ternimal-bgcolor: white;
 
     /* mode-btn */
     --mode-color: black;
@@ -24,7 +25,7 @@
 
 .dark {
     /* main */
-    --back-color: rgb(68, 67, 67);
+    --back-color: rgb(121, 121, 121);
 
     /* nav */
     --logo-color: dodgerblue;
@@ -33,15 +34,16 @@
     --hover-effect: rgb(0, 81, 255);
     --link-color: rgb(85, 170, 255);
     --active-link-color: rgb(0, 81, 255);
-    --active-link-bColor: rgba(218, 236, 255, 0.863);
+    --active-link-bColor: rgba(218, 236, 255, 0.959);
     --terminal-bColor: black;
     --terminal-shadow: rgba(44, 44, 44, 0.788);
-    --anime-bColor:  rgb(90, 90, 90);
-    --welcome-bColor: rgb(51, 51, 51);
+    --anime-bColor:  rgb(92, 92, 92);
+    --welcome-bColor: rgb(73, 73, 73);
 
     /* cmd */
     --op-color: var(--logo-color);
-    
+    --ternimal-bgcolor: black;
+
     /* mode-btn */
     --mode-color: dodgerblue;
 }
@@ -208,12 +210,11 @@
     border: none;
     box-shadow: 0 0 10px 0 rgba(26, 25, 25, 0.301);
     border-radius: 10px;
-    overflow: hidden;
+    overflow: auto;
+    background-color: var(--ternimal-bgcolor);
 }
 
 .terminal-tab {
-    margin-top: 80vh;
-    transform: translate(0, -100%);
     padding: 20px;
     color: var(--op-color);
 }

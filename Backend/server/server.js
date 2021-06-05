@@ -27,8 +27,12 @@ io.on("connection", (socket) => {
         socket.emit("output", d.toString());
     })
     
-    p.stderr.on('err', (err) => {
+    p.stderr.on('data', (err) => {
         socket.emit("output", err.toString());
+    })
+
+    p.on('exit', () => {
+        socket.emit("closeTerminal");
     })
     
     socket.on('join', () => {
