@@ -1,0 +1,12 @@
+{
+  "name": "terminal",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.2",
+    "node-pty": "^0.10.1",
+    "socket.io": "^4.4.0",
+    "xterm": "^4.16.0"
+  }
+}
