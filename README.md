@@ -1,9 +1,13 @@
 # Html-and-Terminal
-Html and terminal is a basic project, where you can type commnd in browser and run it on your server.
-You can use it as a your server manager.
+Html and terminal is a basic project. You can type commnd in browser and run it on your server. You can use it to manage remote systems.
 
-Demo Link here: https://youtu.be/JrIg-IOaw1U
+Version 1 Demo : https://youtu.be/JrIg-IOaw1U
 
+Version 2 Demo : https://youtu.be/AhOC-8VGVNI
 
+## Tech stack
+- React
+- xterm.js
+- express
+- node-pty
 
-Note: This project build successfully on windows 7, but not checked on real server.

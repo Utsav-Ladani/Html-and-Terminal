@@ -1,55 +1,55 @@
-const { spawn } = require('child_process')
-
-const http = require("http");
-const express = require("express");
-const socketIO = require("socket.io");
+const http = require('http');
+const express = require('express');
+const { Server } = require('socket.io');
 const cors = require('cors');
+const Terminal = require('./Terminal');
 
-const port = 5000;
+const PORT = 5000;
 
-let app = express();
-let server = http.createServer(app);
-let io = socketIO(server);
+const app = express();
+const server = http.createServer(app);
+const io = new Server(server);
 
-app.use(cors())
-app.use(express.json())
-app.use(express.urlencoded({ extended: true }))
-app.use('/', express.static("../public"));
+app.use(cors());
 
+io.on('connection', (socket) => {
+    console.log("New User connected.");
 
-io.on("connection", (socket) => {
-    console.log("New connnection eshtablish");
-    socket.emit('joinClient');
+	const term = new Terminal();
 
-    let p = spawn('cmd.exe');
-    
-    p.stdout.on('data', (d) => {
-        socket.emit("output", d.toString());
-    })
-    
-    p.stderr.on('data', (err) => {
-        socket.emit("output", err.toString());
+	// input
+	socket.on('in', (data) => {
+		term.write(data);
     })
 
-    p.on('exit', () => {
-        socket.emit("closeTerminal");
+	// output
+	term.onData((data) => {
+		socket.emit('out', data);
+	})
+
+	// exit
+	term.onExit((data) => {
+		socket.emit('exit', data);
+	})
+
+	// kill by user
+	socket.on('kill', () => {
+		term.kill();
+        console.log("User kill terminal");
     })
-    
-    socket.on('join', () => {
-        console.log("someone joined..");
+
+	// resize
+	socket.on('resize', (cols, rows) => {
+		term.resize(cols, rows);
     })
 
-    socket.on("input", (data) => {
-        console.log(data);
-        p.stdin.write(data + "\r\n");
-    });
+    socket.on('disconnect', () => {
+		term.kill();
+        console.log("User disconnected");
+    })
 
-    socket.on("disconnect", () => {
-        console.log("disconnect..");
-        delete p;
-    });
-});
+})
 
-server.listen(port, () => {
-    console.log(`server listening on port ${port} ....`);
+server.listen(PORT, () => {
+    console.log(`Listening on port ${PORT} ....`);
 });

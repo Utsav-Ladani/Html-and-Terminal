@@ -25,20 +25,20 @@
 
 .dark {
     /* main */
-    --back-color: rgb(121, 121, 121);
+    --back-color: rgb(24, 24, 24);
 
     /* nav */
     --logo-color: dodgerblue;
     --navback-color: black;
-    --shadow: rgba(49, 49, 49, 0.966);
+    --shadow: transparent;
     --hover-effect: rgb(0, 81, 255);
     --link-color: rgb(85, 170, 255);
-    --active-link-color: rgb(0, 81, 255);
-    --active-link-bColor: rgba(218, 236, 255, 0.959);
+    --active-link-color: rgb(36, 37, 37);
+    --active-link-bColor: rgba(255, 255, 255, 0.432);
     --terminal-bColor: black;
     --terminal-shadow: rgba(44, 44, 44, 0.788);
     --anime-bColor:  rgb(92, 92, 92);
-    --welcome-bColor: rgb(73, 73, 73);
+    --welcome-bColor: rgb(22, 22, 22);
 
     /* cmd */
     --op-color: var(--logo-color);
@@ -55,8 +55,15 @@
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+body {
+    height: 100vh;
+    width: 100%;
+    min-height: 500px;
+    min-width: 900px;
+}
+
 .darkmode {
-    position: absolute;
+    position: fixed;
     bottom: 20px;
     right: 20px;
     height: 60px;
@@ -80,8 +87,12 @@
     box-shadow: 0 0 10px 2px rgba(30, 143, 255, 0.432) ;
 }
 
+#root {
+    height: 100%;
+}
+
 .main {
-    height: 100vh;
+    height: 100%;
     display: grid;
     grid-template-rows: auto 1fr;
     background-color: var(--back-color);
@@ -93,7 +104,7 @@
     display: grid;
     grid-template-columns: 1fr 50px;
     background-color: var(--navback-color);
-    box-shadow: 0 0 10px 0px var(--shadow) ;
+    box-shadow: 0 0 5px 0 var(--shadow) ;
     z-index: 1;
 }
 
@@ -179,44 +190,12 @@
 
 /* Cmd */
 
-.cmd {
-    padding: 10px 20px;
-}
-
-.inp {
-    margin: 10px;
-    display: flex;
-    column-gap: 10px;
-    justify-content: center;
-    align-items: center;
-}
-.inp > input {
-    padding: 5px;
-    width: 70vw;
-    min-width: 200px;
-    color: var(--logo-color);
-    background-color: var(--navback-color);
-    border: solid 2px dodgerblue;
-    border-radius: 4px;
-    font-weight: 800;
-}
-
-.inp > input:focus {
-    outline: solid 2px rgba(30, 143, 255, 0.596);
-}
-
-.output {
-    height: 80vh;
-    border: none;
-    box-shadow: 0 0 10px 0 rgba(26, 25, 25, 0.301);
-    border-radius: 10px;
-    overflow: auto;
-    background-color: var(--ternimal-bgcolor);
-}
-
-.terminal-tab {
-    padding: 20px;
-    color: var(--op-color);
+.term-wrapper {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    place-items: center;
+    padding: 30px;
 }
 
 /* About */

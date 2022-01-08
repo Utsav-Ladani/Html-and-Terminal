@@ -1,4 +1,6 @@
 import React from 'react'
+import { Terminal } from 'xterm'
+import 'xterm/css/xterm.css'
 
 import socketio from 'socket.io-client'
 import { SOCKET_URL } from "../config"
@@ -8,64 +10,58 @@ class Cmd extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {
-            input: "",
-            output: "",
-        }
+
+        // refs
+        this.term_wrapper = React.createRef();
+        this.termDOM = React.createRef();
     }
-    
+
     componentDidMount() {
+        // init
         this.socket = socketio.connect(SOCKET_URL, { transports: ['websocket'] });
+        this.term = new Terminal();
 
-        this.socket.emit("join");
+        // config
+        this.term.open(this.termDOM.current);
+        this.term.resize(90, 25);
+        this.socket.emit('resize', 90, 25);
+        this.term.focus();
 
-        this.socket.on('joinClient', () => {
-            this.setState({output: ""});
+        // input
+        this.term.onData((data) => {
+            this.socket.emit('in', data);
         })
 
-        this.socket.on("output", (data) => {
-            this.setState((state) => ({output: state.output + data}));
-
-            let view = document.getElementById("output");
-            view.scrollBy(0, view.scrollHeight);
+        // output
+        this.socket.on('out', (data) => {
+            this.term.write(data);
         })
 
-        this.socket.on('closeTerminal', () => {
-            delete this.socket;
-            window.location.href = '/';
+        // exit
+        this.socket.on('exit', (data) => {
+            this.term.dispose();
+            this.socket.emit('kill');
+        })
+
+        // focus
+        window.addEventListener('focus', () => {
+            this.term.focus();
         })
     }
 
     componentWillUnmount() {
-        delete this.socket;
-    }
+        // close terminal
+        this.term.dispose();
+        this.socket.emit('kill');
 
-    handleSubmit = (e) => {
-        e.preventDefault();
-
-        this.socket.emit("input", e.target.children[0].value);
-
-        e.target.children[0].value = "";
+        window.removeEventListener('focus', window);
     }
 
 
     render() {
         return (
-            <div className="cmd" >
-                <div className="output" id="output">
-                    <pre className="terminal-tab">
-                        {this.state.output}
-                    </pre>
-                </div>
-
-                <form method="post" className="inp" onSubmit={this.handleSubmit}>
-                    <input
-                        type="text"
-                        id="command"
-                        name="command"
-                        placeholder="Type Command"
-                    ></input>
-                </form>
+            <div ref={this.term_wrapper} className="term-wrapper" >
+                <div ref={this.termDOM} className="terminal"></div>
             </div >
         );
     }

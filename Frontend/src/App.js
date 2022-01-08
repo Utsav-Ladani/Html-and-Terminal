@@ -17,8 +17,8 @@ function App() {
 				e.target.classList.toggle("dark-switch");
 				// e.target.textContent = light ? "Light" : "Dark";
 			}}>
-				{light?"Dark":"Light"}
-        		</button>
+				{light ? "Dark" : "Light"}
+			</button>
 
 			<div className={`main ${light ? "light" : "dark"}`}>
 				<Navbar />
